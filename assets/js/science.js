@@ -1,4 +1,4 @@
-// Science & Space: countdown to the next events, and filters for the card grids.
+// Explore: countdown to the next events, and filters for the card grids.
 // Without JavaScript every card is shown and the dates are shown as written.
 (function () {
   "use strict";

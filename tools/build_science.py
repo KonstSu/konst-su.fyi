@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build the "Science & Space" section of the site (science/*.html) and the
+Build the "Explore" section (formerly "Science & Space") of the site (science/*.html) and the
 teaser on the home page.
 
 Sources, written in Russian and maintained by their own agents (read only):
@@ -753,7 +753,8 @@ def countdown_html(site: Site, depth: int, n: int = 4) -> str:
 
 FKEYS = [("1", "Home", "index.html"), ("2", "About", "about.html"), ("3", "Projects", "projects.html"),
          ("4", "CV", "cv.html"), ("5", "Skills", "cv.html#skills"), ("6", "Papers", "cv.html#publications"),
-         ("7", "Explore", "science/index.html"), ("8", "Contact", "contact.html"), ("9", "Privacy", "privacy.html")]
+         ("7", "Contact", "contact.html"), ("8", "Privacy", "privacy.html"),
+         ("9", 'Explore <span class="emo" aria-hidden="true">🪐</span>', "science/index.html")]
 
 
 def dos_name(name: str, taken: set[str]) -> str:
@@ -779,7 +780,7 @@ def page(site: Site, *, slug: str, title: str, description: str, depth: int, bod
     main_nav = "\n      ".join([
         nav("index.html", "Home", False), nav("about.html", "About", False),
         nav("projects.html", "Projects", False), nav("cv.html", "CV", False),
-        nav("contact.html", "Contact", False), nav("science/index.html", 'Explore <span aria-hidden="true">🪐</span>', True),
+        nav("contact.html", "Contact", False), nav("science/index.html", 'Explore <span class="emo" aria-hidden="true">🪐</span>', True),
     ])
     current = ' aria-current="page"'
     sub_nav = "\n      ".join(
@@ -787,13 +788,13 @@ def page(site: Site, *, slug: str, title: str, description: str, depth: int, bod
         f'{current if k == sub else ""}>{label}</a></li>'
         for k, label in SUBNAV)
     js = "\n".join(f'<script src="{esc(rel(f"assets/js/{s}", depth))}" defer></script>' for s in (*scripts, "retro.js"))
-    cur_key = "science/index.html"  # F7 "Explore" stands for the whole Science & Space section
+    cur_key = "science/index.html"  # F9 "Explore" stands for the whole Explore section
     fkeys = "".join(
         f'<a href="{esc(rel(h, depth))}"{current if h == cur_key else ""}><b>{n}</b><span>{l}</span></a>'
         for n, l, h in FKEYS) + '<a href="#"><b>10</b><span>Top</span></a>'
     url = f"{SITE}science/{sub}/{slug}.html" if depth == 2 else f"{SITE}science/{slug}.html"
-    full_title = f"{title} — Science & Space — Konstantin Sukharnikov" if slug != "index" else \
-        "Science & Space — Konstantin Sukharnikov"
+    full_title = f"{title} — Explore — Konstantin Sukharnikov" if slug != "index" else \
+        "Explore — Konstantin Sukharnikov"
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -834,7 +835,7 @@ def page(site: Site, *, slug: str, title: str, description: str, depth: int, bod
 <div class="dos-path wrap" aria-hidden="true">{esc(dos)}&gt;<span class="cursor"></span></div>
 
 <div class="sci-bar wrap">
-  <nav class="sub-nav" aria-label="Science &amp; Space">
+  <nav class="sub-nav" aria-label="Explore">
     <ul>
       {sub_nav}
     </ul>
@@ -1034,7 +1035,7 @@ def item_page(site: Site, item: Item, prev_it: Item | None, next_it: Item | None
 
     home_tag = '<span class="home-tag">Where I work</span>' if item.id == HOME_FACILITY else ""
     body = f"""<article class="item wrap">
-  <nav class="bc label" aria-label="Breadcrumb"><a href="{rel('science/index.html', d)}">Science &amp; Space</a> / <a href="{rel(f'science/{list_page}.html', d)}">{'Missions' if is_m else 'Facilities'}</a></nav>
+  <nav class="bc label" aria-label="Breadcrumb"><a href="{rel('science/index.html', d)}">Explore</a> / <a href="{rel(f'science/{list_page}.html', d)}">{'Missions' if is_m else 'Facilities'}</a></nav>
   <header class="item-head">
     <p class="label item-kind"><span class="px {'space' if is_m else 'facility'}" aria-hidden="true"></span>{kind_label} · {esc(place)}</p>
     <h1>{esc(item.full_name)}</h1>{home_tag}
@@ -1121,7 +1122,7 @@ def overview_page(site: Site) -> str:
     up_html = "\n".join(event_html(e, site, d) for e in upcoming)
     entries = result_entries(site)[:5]
     n_active = sum(it.status not in ("ended", "lost") for it in site.missions)
-    body = f"""{head_block("Science &amp; Space",
+    body = f"""{head_block('Explore <span class="emo" aria-hidden="true">🪐</span>',
         "I am a science and space enthusiast, and this section is my hobby: interplanetary missions and the big machines of physics on Earth, what is flying, what is being built and what comes next. Every entry links to its source.")}
 
 <section class="sci-sec wrap" aria-labelledby="h-next">
@@ -1152,7 +1153,7 @@ def overview_page(site: Site) -> str:
 {up_html}
   </ol>
 </section>"""
-    return page(site, slug="index", title="Science & Space",
+    return page(site, slug="index", title="Explore",
                 description="Interplanetary missions and large research facilities: countdown, calendar, results and launches, compiled from public sources by Konstantin Sukharnikov.",
                 depth=d, body=body, sub="index", dos="C:\\KS\\SCIENCE\\INDEX.HTM")
 
@@ -1287,7 +1288,7 @@ def build(site: Site) -> dict[str, str]:
                                   site.launches, "Upcoming deep-space launches: missions to the planets, small bodies and the Moon."),
         "method.html": doc_page(site, "method", "Method",
                                 "How this section is put together, where the information comes from, and what it is not.",
-                                site.method, "How the Science & Space section is compiled and which sources it uses."),
+                                site.method, "How the Explore section is compiled and which sources it uses."),
     }
     for items, folder in ((site.missions, "MISSIONS"), (site.facilities, "FACILI~1")):
         taken: set[str] = set()

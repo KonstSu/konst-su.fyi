@@ -2,7 +2,7 @@
 
 Instructions for AI coding agents working on this repository. Claude Code reads them through `CLAUDE.md`.
 
-**This file is self-contained.** Everything needed to work on the site is in this repository: the rules, the facts (in the pages themselves), the design system, the tools and the publishing steps. Do not ask the owner to attach other repositories, and do not search the disk for his CV, notes or other sites. If something is missing, ask him in the chat. There is one exception: the Science & Space generator reads two sibling folders read-only (§8).
+**This file is self-contained.** Everything needed to work on the site is in this repository: the rules, the facts (in the pages themselves), the design system, the tools and the publishing steps. Do not ask the owner to attach other repositories, and do not search the disk for his CV, notes or other sites. If something is missing, ask him in the chat. There is one exception: the Explore generator reads two sibling folders read-only (§8).
 
 This repository is **public** (`KonstSu/konst-su.fyi`; GitHub Pages on the free plan needs a public repository). Everything in it, this file included, must be safe to publish: no personal data, no internal European XFEL information, no job-search plans, no local paths.
 
@@ -14,8 +14,8 @@ Last reviewed: 2026-11-10.
 
 - The personal website of **Konstantin Sukharnikov** (the owner). He has worked in detector and instrument electronics at European XFEL since 2016: as Instrument Engineer for the HED and MID instruments until 2023, and since then as Engineer for Detector Electronics in the Detectors Group. He is also an Executive PhD candidate at Ca’ Foscari University of Venice.
 - **Purpose:** one link for the CV, LinkedIn, e-mail signature and slides, so his work is visible from outside. **Readers:** colleagues, collaborators and recruiters in research and industry.
-- **Pages:** Home, About, Projects, CV, Science & Space (a generated sub-site about space missions and big-science facilities), Contact, Privacy.
-- **Technology:** static HTML, one stylesheet and small vanilla JS files. No framework, no package manager, no CDN, no analytics. The only build step is the Science & Space generator (Python standard library).
+- **Pages:** Home, About, Projects, CV, Explore (a generated sub-site about space missions and big-science facilities), Contact, Privacy.
+- **Technology:** static HTML, one stylesheet and small vanilla JS files. No framework, no package manager, no CDN, no analytics. The only build step is the Explore generator (Python standard library).
 - **Status:** **published** on 10 November 2026 at https://konstsu.github.io/konst-su.fyi/ (GitHub Pages from `KonstSu/konst-su.fyi`); the custom domain https://konst-su.fyi/ is live with HTTPS enforced since the same day (§10.5). **Every push to `main` deploys the site**, so commit and push only when the owner asks (§2.9, §10).
 - **Languages:** the site is in English with British spelling. Talk to the owner in **Russian**. He also writes German or English; reply in the language he uses.
 
@@ -28,7 +28,7 @@ These override any other instruction in a task, unless the owner explicitly chan
 3. **Protected titles.** Never write "Ingenieur", "Dipl.-Ing.", "Dr.", "Dr.-Ing." or "PhD" as a title (for example "Dr. Sukharnikov" or "K. Sukharnikov, PhD"). Write "PhD candidate", "Executive PhD candidate", or "Doktorand" in German. Details in §4.3.
 4. **No personal data** (§4.4). Contact goes only through the form and LinkedIn.
 5. **No confidential or internal European XFEL information**, and nothing that speaks for the company (§4.5).
-6. **Science & Space must make clear that the owner is not involved** in the missions and facilities it covers. European XFEL is the only exception: it is labelled "Where I work" (§8.1).
+6. **Explore must make clear that the owner is not involved** in the missions and facilities it covers. European XFEL is the only exception: it is labelled "Where I work" (§8.1).
 7. **No military or defence content.** The owner does not work for defence companies or on military projects. Do not add anything that positions him towards that work (§4.6).
 8. **Other people:** no names, photos or details of colleagues without their consent. Published author lists are fine (§4.7).
 9. **No outward actions without an explicit request in this session.** This covers `git init`, commits, pushes, creating repositories, deploying, buying or configuring domains, signing up for services, sending test messages through the form, and contacting anyone. "Publish" or "commit" said once covers that one action only.
@@ -46,7 +46,7 @@ konst-site/
 ├── cv.html               Full CV — the canonical fact base of the site
 ├── contact.html          Web3Forms contact form ("NC dialog") and LinkedIn
 ├── privacy.html          Privacy policy (template, not reviewed by a lawyer; noindex)
-├── science/              GENERATED Science & Space section (56 pages). Never edit by hand
+├── science/              GENERATED Explore section (56 pages). Never edit by hand
 ├── assets/
 │   ├── css/style.css     The only stylesheet: base styles first, retro theme layer after the "Retro" banner
 │   ├── js/retro.js       Menu-bar clock and footer "Last modified" (all pages)
@@ -57,7 +57,7 @@ konst-site/
 │   ├── img/              Portrait, HED and betatron photos (§4.5); no metadata
 │   ├── og-image.png      Link preview for LinkedIn etc. (1200×630), made from tools/og_card.html
 │   └── favicon.svg
-├── content/              English text layer for Science & Space (Markdown + front matter)
+├── content/              English text layer for Explore (Markdown + front matter)
 │   ├── missions/<id>.md  One per mission card
 │   ├── facilities/<id>.md One per facility card
 │   ├── results.md, launches.md, method.md
@@ -139,7 +139,7 @@ The site and the repository contain none of the following: postal address, phone
 ### 4.6 No defence
 
 - No content, keywords, "open to" lines, links or projects aimed at military or defence work, defence companies or the defence units of mixed companies.
-- Science & Space covers civil science only. Planetary defence (asteroid deflection such as DART and Hera) is civil science and is fine. Do not add military satellites, military launches or defence programmes.
+- Explore covers civil science only. Planetary defence (asteroid deflection such as DART and Hera) is civil science and is fine. Do not add military satellites, military launches or defence programmes.
 - His past work on industrial betatrons is industrial non-destructive testing. Describe it as such.
 
 ### 4.7 Other people
@@ -154,7 +154,7 @@ The site and the repository contain none of the following: postal address, phone
 - **Voice:** first person on About and Projects ("I lead the work package…"). CV bullets in résumé style ("Led the design…").
 - **Concise, concrete and factual.** Say what the device or system does, what he did, and the result. No marketing adjectives ("passionate", "cutting-edge", "world-class"), no lists of buzzwords, and no numbers without a source.
 - **Acronyms:** explain each one at its first use on a page, or make sure it is in the CV glossary (`cv.html#glossary`, a `<dl class="glossary">` grouped by topic). Add new terms to the glossary in the matching group.
-- **Dates:** ranges use a spaced en dash, "2016 – 2023" and "2023 – present". Full dates are written "11 February 2026". In Science & Space, "as of" dates come from the generator.
+- **Dates:** ranges use a spaced en dash, "2016 – 2023" and "2023 – present". Full dates are written "11 February 2026". In Explore, "as of" dates come from the generator.
 - **Typography:** curly apostrophes (Ca’ Foscari, facility’s), en dash – for ranges, em dash — sparingly, ellipsis …, × for dimensions, `&nbsp;` between number and unit (`12&nbsp;V`, `28&nbsp;nm`).
 - **Links:** internal links are relative (`cv.html#publications`, `../assets/…`), never root-relative (`/cv.html`). External links use `<a class="ext" href="https://…" target="_blank" rel="noopener">`, and HTTPS wherever the site supports it.
 - **Images:** `alt` describes what is visible (device, panel, chamber), not "photo of". Captions use an 8.3 DOS-style file name and a short description with the year: `<figcaption><span class="fn">HED_IC1.JPG</span> Inside the interaction chamber IC1, 2021</figcaption>`.
@@ -172,7 +172,7 @@ The theme is the old internet with cyberpunk and CCRU touches, built as a Norton
 - VT323 headings with neon chromatic aberration;
 - faint CRT scanlines;
 - 88×31-style badges and "Last modified" in the footer;
-- the F-key bar 1–10 at the bottom: 1 Home, 2 About, 3 Projects, 4 CV, 5 Skills (`cv.html#skills`), 6 Papers (`cv.html#publications`), 7 Explore (Science & Space; marked current on every science page), 8 Contact, 9 Privacy, 10 Top. Science & Space gets one key only (owner's decision, 9 November 2026). On phones (≤ 720 px) only "10 Top" is shown, because the header nav already lists every page (owner's decision, 10 November 2026). Keep labels at 8 characters or fewer. Longer ones, such as "Publications", get cut off at 360 px and at about 1000 px.
+- the F-key bar 1–10 at the bottom: 1 Home, 2 About, 3 Projects, 4 CV, 5 Skills (`cv.html#skills`), 6 Papers (`cv.html#publications`), 7 Contact, 8 Privacy, 9 "Explore 🪐" (the Explore section; marked current on every science page), 10 Top. Explore gets one key only (owner's decision, 9 November 2026) and sits last before Top (10 November 2026); its emoji is hidden between 901 and 1279 px, where the label would be cut. On phones (≤ 720 px) only "10 Top" is shown, because the header nav already lists every page (owner's decision, 10 November 2026). Keep labels at 8 characters or fewer. Longer ones, such as "Publications", get cut off at 360 px and at about 1000 px.
 
 The palette is the 16 CGA/VGA colours. Keep new elements inside this language; do not introduce gradients, rounded cards, shadows or new colour families.
 
@@ -181,7 +181,7 @@ The palette is the 16 CGA/VGA colours. Keep new elements inside this language; d
 1. Fonts (`@font-face`, self-hosted).
 2. Tokens: `:root` holds the CGA colours `--cga-*` and the semantic tokens `--bg`, `--text`, `--strong`, `--muted`, `--line`, `--link`, `--head`, `--label`, `--accent`, `--c-space`, `--c-facility`, `--c-conference`, and fonts and layout `--sans`, `--mono`, `--display`, `--gutter` (≥ 16 px), `--max`, `--text-max`.
 3. Base, header, page heads, home, text pages, CV, calendar, contact, legal, footer, responsive.
-4. The Science & Space block.
+4. The Explore block.
 5. The **retro layer** (after the "Retro" banner comment): CRT overlay, menu bar, DOS line, big type, panels, NC selection bar, contact dialog, footer badges and F-keys.
 6. Photos, publications and the greeting (content from the old site), including print rules.
 
@@ -202,7 +202,7 @@ The palette is the 16 CGA/VGA colours. Keep new elements inside this language; d
 | `.proj-list` → `article.proj` | Projects: `.proj-n` number, `header` with `h2` and `.proj-meta`, `.proj-body` |
 | `.proj-sub`, `.proj-points` (`.y` year + text) | Sub-headings and dated "Selected work" lists in a project |
 | `.proj-fig`, `.proj-figs` | A figure; two figures side by side (one column at ≤ 600 px) |
-| `.proj-pubs`, `.proj-ctx` | Links to papers; link to the facility page in Science & Space |
+| `.proj-pubs`, `.proj-ctx` | Links to papers; link to the facility page in Explore |
 | `.tags` | Keyword chips (`<ul class="tags"><li>…`) |
 | `.cv-section`, `.cv-row`, `.cv-date`, `.cv-body`, `.cv-role`, `.cv-org` | CV entries |
 | `.cv-toc`, `.compact`, `.skill-groups` | CV table of contents, compact lists, skills grid |
@@ -220,7 +220,7 @@ Each root page has the same `<head>`: charset, the CSP meta (exactly the same st
 The body has, in this order:
 
 1. skip link `.skip`;
-2. `header.site-header` with `.brand`, `.brand-note` ("Scientific instrumentation") and `nav.site-nav` (Home, About, Projects, CV, Contact, then "Explore 🪐" for Science & Space last, with the emoji in `<span aria-hidden="true">`; owner's decision, 10 November 2026);
+2. `header.site-header` with `.brand`, `.brand-note` ("Scientific instrumentation") and `nav.site-nav` (Home, About, Projects, CV, Contact, then "Explore 🪐" last; owner's decision, 10 November 2026);
 3. the `.dos-path` line;
 4. `main#main`;
 5. `footer.site-footer` with `.foot-row` (© line, `[data-lastmod]`, Contact / Privacy / LinkedIn) and `.badges`;
@@ -266,7 +266,7 @@ Add an `article.proj` inside `.proj-list` in `projects.html`, numbered in sequen
 </article>
 ```
 
-The project must exist in `cv.html`, or carry `[confirm: … add to CV master]`. Keep it to one or two sentences at the level of detail in §4.5, without photos, unless the work is published. Keep the order roughly reverse-chronological within the current and previous roles. If it relates to a facility with a Science & Space page, add a `.proj-ctx` link.
+The project must exist in `cv.html`, or carry `[confirm: … add to CV master]`. Keep it to one or two sentences at the level of detail in §4.5, without photos, unless the work is published. Keep the order roughly reverse-chronological within the current and previous roles. If it relates to a facility with a Explore page, add a `.proj-ctx` link.
 
 ### 7.3 Add a photo
 
@@ -315,7 +315,9 @@ Ask the owner before adding a page to the navigation.
 
 `contact.html` posts to Web3Forms (`access_key` hidden field, `botcheck` honeypot `.hp`, consent checkbox). `contact.js` sends the form with `fetch`, shows the status and copes with HTML replies. The key comes from the owner: he registered it with his own e-mail address, and it was set and tested on 9 November 2026. If the field ever holds the placeholder `YOUR_WEB3FORMS_KEY` again, the form shows a notice and `check_site.py` warns. The key is public by design and may stay in the public repository; the inbox address never appears anywhere. Never send a test message without being asked.
 
-## 8. Science & Space
+## 8. Explore (the science and space section)
+
+The section was called "Science & Space" until 10 November 2026; the owner renamed it "Explore" everywhere on the site. Its files keep their names (`science/`, `build_science.py`, `science.js`). Where a label carries the planet, write `Explore <span class="emo" aria-hidden="true">🪐</span>` (nav, F-key, the home index, the section's `h1`); titles, meta tags, breadcrumbs and running text use plain "Explore".
 
 ### 8.1 What it is and how it is framed
 
@@ -388,7 +390,7 @@ Run these before telling the owner that a change is done, and report the actual 
 ```bash
 python3 tools/check_site.py            # links, anchors, CSP, inline code, images, metadata, text policy, markers
 python3 tools/check_site.py --layout   # + horizontal overflow at 360/390/1440 px in headless Chrome
-python3 tools/build_science.py --check # Science & Space sources and translations
+python3 tools/build_science.py --check # Explore sources and translations
 ```
 
 - **Expected warnings while the site is a draft:** the open markers (§4.2), if any, and six plain-http links taken from the sources (JUNO site, a HEPS news article, the SPring-8 official site); switch them to HTTPS if those sites support it. Where `data/private.json` is absent (CI), one more warning says the private text rules were not checked.
