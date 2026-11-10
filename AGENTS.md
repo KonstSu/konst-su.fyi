@@ -220,7 +220,7 @@ Each root page has the same `<head>`: charset, the CSP meta (exactly the same st
 The body has, in this order:
 
 1. skip link `.skip`;
-2. `header.site-header` with `.brand`, `.brand-note` ("Scientific instrumentation") and `nav.site-nav`;
+2. `header.site-header` with `.brand`, `.brand-note` ("Scientific instrumentation") and `nav.site-nav` (Home, About, Projects, CV, Contact, then "Explore 🪐" for Science & Space last, with the emoji in `<span aria-hidden="true">`; owner's decision, 10 November 2026);
 3. the `.dos-path` line;
 4. `main#main`;
 5. `footer.site-footer` with `.foot-row` (© line, `[data-lastmod]`, Contact / Privacy / LinkedIn) and `.badges`;

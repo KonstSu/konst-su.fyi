@@ -779,7 +779,7 @@ def page(site: Site, *, slug: str, title: str, description: str, depth: int, bod
     main_nav = "\n      ".join([
         nav("index.html", "Home", False), nav("about.html", "About", False),
         nav("projects.html", "Projects", False), nav("cv.html", "CV", False),
-        nav("science/index.html", "Science &amp; Space", True), nav("contact.html", "Contact", False),
+        nav("contact.html", "Contact", False), nav("science/index.html", 'Explore <span aria-hidden="true">🪐</span>', True),
     ])
     current = ' aria-current="page"'
     sub_nav = "\n      ".join(
