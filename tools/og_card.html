@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- Source of assets/og-image.png, the 1200×630 link preview (og:image). Never uploaded.
+     Keep its text in line with cv.html. To regenerate: python3 -m http.server 8770 --bind 127.0.0.1 (repository root), then
+     Chrome --headless=new --disable-gpu --user-data-dir=<temp> --hide-scrollbars --force-device-scale-factor=1
+     --window-size=1200,630 --virtual-time-budget=4000 --screenshot=assets/og-image.png http://127.0.0.1:8770/tools/og_card.html -->
+<html lang="en"><head><meta charset="utf-8"><title>og:image card</title>
+<style>
+@font-face { font-family: "VT323"; src: url("../assets/fonts/vt323-latin-400-normal.woff2") format("woff2"); font-display: block; }
+@font-face { font-family: "JBM"; src: url("../assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: block; }
+@font-face { font-family: "JBM"; src: url("../assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-display: block; }
+:root { --black:#000; --blue:#0000aa; --cyan:#00aaaa; --lcyan:#55ffff; --yellow:#ffff55; --white:#fff; --lred:#ff5555; --lmag:#ff55ff; --gray:#aaaaaa; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--black); }
+body { font-family: "JBM", monospace; color: var(--lcyan); display: flex; flex-direction: column; }
+.menu { height: 46px; background: var(--cyan); color: var(--black); display: flex; justify-content: space-between; align-items: center; padding: 0 28px; font-size: 22px; font-weight: 500; }
+.panel { position: relative; flex: 1; margin: 22px 26px 18px; background: var(--blue); border: 6px double var(--lcyan); padding: 58px 56px 0; }
+.panel::before { content: " C:\\KS\\INDEX.HTM "; position: absolute; top: -17px; left: 50%; transform: translateX(-50%); background: var(--cyan); color: var(--black); font-size: 21px; padding: 0 8px; }
+.name { font-family: "VT323", monospace; font-size: 118px; line-height: .9; color: var(--white); text-shadow: -3px 0 var(--lred), 3px 0 var(--lcyan); letter-spacing: .5px; }
+.desc { font-family: "VT323", monospace; font-size: 64px; line-height: 1; color: var(--yellow); margin-top: 22px; }
+.meta { font-size: 27px; color: var(--lcyan); margin-top: 30px; }
+.meta b { color: var(--white); font-weight: 500; }
+.dos { position: absolute; left: 56px; bottom: 30px; font-size: 25px; color: var(--gray); }
+.cur { display: inline-block; width: 15px; height: 27px; background: var(--gray); vertical-align: -5px; margin-left: 4px; }
+.fkeys { height: 40px; display: flex; font-size: 20px; }
+.fkeys span { flex: 1; display: flex; align-items: center; background: var(--cyan); color: var(--black); margin-right: 6px; }
+.fkeys span:last-child { margin-right: 0; }
+.fkeys b { background: var(--black); color: var(--white); font-weight: 400; padding: 0 6px 0 10px; height: 100%; display: flex; align-items: center; margin-right: 6px; }
+</style></head>
+<body>
+  <div class="menu"><span>Konstantin Sukharnikov</span><span>konst-su.fyi</span></div>
+  <div class="panel">
+    <div class="name">Konstantin Sukharnikov</div>
+    <div class="desc">Scientific instrumentation</div>
+    <div class="meta"><b>Detector electronics</b> · European XFEL · Hamburg</div>
+    <div class="dos">C:\KS&gt;<span class="cur"></span></div>
+  </div>
+  <div class="fkeys"><span><b>1</b>Home</span><span><b>2</b>About</span><span><b>3</b>Projects</span><span><b>4</b>CV</span><span><b>5</b>Skills</span><span><b>6</b>Papers</span><span><b>7</b>Explore</span><span><b>8</b>Contact</span></div>
+</body></html>

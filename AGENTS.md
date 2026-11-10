@@ -4,7 +4,7 @@ Instructions for AI coding agents working on this repository. Claude Code reads 
 
 **This file is self-contained.** Everything needed to work on the site is in this repository: the rules, the facts (in the pages themselves), the design system, the tools and the publishing steps. Do not ask the owner to attach other repositories, and do not search the disk for his CV, notes or other sites. If something is missing, ask him in the chat. There is one exception: the Science & Space generator reads two sibling folders read-only (§8).
 
-This repository will probably be **public** (GitHub Pages on the free plan needs a public repository). Everything in it, this file included, must be safe to publish: no personal data, no internal European XFEL information, no job-search plans, no local paths.
+This repository is **public** (`KonstSu/konst-su.fyi`; GitHub Pages on the free plan needs a public repository). Everything in it, this file included, must be safe to publish: no personal data, no internal European XFEL information, no job-search plans, no local paths.
 
 Last reviewed: 2026-11-10.
 
@@ -16,7 +16,7 @@ Last reviewed: 2026-11-10.
 - **Purpose:** one link for the CV, LinkedIn, e-mail signature and slides, so his work is visible from outside. **Readers:** colleagues, collaborators and recruiters in research and industry.
 - **Pages:** Home, About, Projects, CV, Science & Space (a generated sub-site about space missions and big-science facilities), Contact, Privacy.
 - **Technology:** static HTML, one stylesheet and small vanilla JS files. No framework, no package manager, no CDN, no analytics. The only build step is the Science & Space generator (Python standard library).
-- **Status:** draft, **not published**. Local git repository since 10 November 2026; the GitHub repository will be `KonstSu/konst-su.fyi`. Nothing goes online until the owner explicitly says so (§10).
+- **Status:** **published** on 10 November 2026 at https://konstsu.github.io/konst-su.fyi/ (GitHub Pages from `KonstSu/konst-su.fyi`); the custom domain https://konst-su.fyi/ is live with HTTPS enforced since the same day (§10.5). **Every push to `main` deploys the site**, so commit and push only when the owner asks (§2.9, §10).
 - **Languages:** the site is in English with British spelling. Talk to the owner in **Russian**. He also writes German or English; reply in the language he uses.
 
 ## 2. Hard rules
@@ -55,6 +55,7 @@ konst-site/
 │   ├── js/contact.js     Form submission via fetch; tolerates HTML replies from Web3Forms
 │   ├── fonts/            JetBrains Mono (text) and VT323 (display), woff2, with OFL licences
 │   ├── img/              Portrait, HED and betatron photos (§4.5); no metadata
+│   ├── og-image.png      Link preview for LinkedIn etc. (1200×630), made from tools/og_card.html
 │   └── favicon.svg
 ├── content/              English text layer for Science & Space (Markdown + front matter)
 │   ├── missions/<id>.md  One per mission card
@@ -67,6 +68,7 @@ konst-site/
 │   ├── build_science.py  Generator for science/ and the home-page teaser
 │   ├── check_site.py     Pre-publication checks; assembles dist/ for upload
 │   ├── layout_check.html Helper page for check_site.py --layout (never uploaded)
+│   ├── og_card.html      Source of assets/og-image.png; how to regenerate is in its comment (never uploaded)
 │   └── prepare_photo.py  Resize a photo, apply the EXIF rotation, strip metadata
 ├── README.md             Owner-facing notes in Russian: status, how-to, pre-publication checklist
 ├── AGENTS.md             This file
@@ -213,7 +215,7 @@ The palette is the 16 CGA/VGA colours. Keep new elements inside this language; d
 
 ### 6.4 Page skeleton and shared chrome
 
-Each root page has the same `<head>`: charset, the CSP meta (exactly the same string everywhere), referrer, viewport, `<title>` ("Page — Konstantin Sukharnikov"), meta description, `og:type`/`og:title`/`og:description`, the favicon, a font preload and the stylesheet.
+Each root page has the same `<head>`: charset, the CSP meta (exactly the same string everywhere), referrer, viewport, `<title>` ("Page — Konstantin Sukharnikov"), meta description, `og:type`/`og:title`/`og:description`, `og:url`, `og:image` (with width, height and alt), `<link rel="canonical">`, the favicon, a font preload and the stylesheet. `og:url` and `canonical` hold the page's own address under `https://konst-su.fyi/` (the home page is the bare domain); Privacy has only `canonical`. Science pages get the same tags from `page()` (constant `SITE`). `check_site.py` checks all of them.
 
 The body has, in this order:
 
@@ -414,15 +416,14 @@ Nothing in this section is done without an explicit request in the current sessi
    - Set a local identity **before the first commit**: `git config user.name "Konstantin Sukharnikov"` and `git config user.email "KonstSu@users.noreply.github.com"` (the hidden address of his GitHub account KonstSu, as shown under GitHub → Settings → Emails; confirmed by the owner on 10 November 2026). The global git config on his Mac uses his work e-mail address, which must never enter the public history. Check with `git config user.email` before committing.
    - `git config credential.helper '!gh auth git-credential'`, then check that `gh auth status` shows the owner's account as active (several accounts may be logged in; switch with `gh auth switch`). A wrong account causes a 403 error on push.
    - Commit only what the owner asked for. Messages in English, imperative mood. Keep the standard `Co-Authored-By` and session trailers in commit messages: the owner accepts them in the git history (10 November 2026). The site itself still never names the tool (§8.1).
-4. **Hosting: GitHub Pages**, public repository `KonstSu/konst-su.fyi`. Every tracked file is public, this file and the README included. `.github/workflows/pages.yml` runs `check_site.py --dist` on every push to `main`, uploads `dist/` and deploys it. Its actions are pinned to commit SHAs (checkout v7.0.1, upload-pages-artifact v5.0.0, deploy-pages v5.0.1, checked 10 November 2026); when updating, look up the current release and its SHA. In the repository settings, Pages → Source must be "GitHub Actions". Serving the repository root is the fallback; in that case add `.nojekyll` at the root, accept that the source files become visible, and remember that Jekyll would otherwise render `content/*.md`.
+4. **Hosting: GitHub Pages**, public repository `KonstSu/konst-su.fyi`. Every tracked file is public, this file and the README included. `.github/workflows/pages.yml` runs `check_site.py --dist` on every push to `main`, uploads `dist/` and deploys it. Its actions are pinned to commit SHAs (checkout v7.0.1, upload-pages-artifact v5.0.0, deploy-pages v5.0.1, checked 10 November 2026); when updating, look up the current release and its SHA. In the repository settings, Pages → Source must be "GitHub Actions". **Repository settings since 10 November 2026:** wiki and projects are off (issues on); the ruleset "Protect main" blocks force pushes and deletion of `main`; Actions are limited to GitHub-owned actions pinned to full commit SHAs, so any other action fails until the owner allows it. Serving the repository root is the fallback; in that case add `.nojekyll` at the root, accept that the source files become visible, and remember that Jekyll would otherwise render `content/*.md`.
 5. **Domain:** `konst-su.fyi`, registered by the owner at Porkbun on 10 November 2026. Keep WHOIS privacy and auto-renewal on, without extras. At Porkbun, first delete the default parking records (`ALIAS`/`CNAME` to Porkbun's parking host). DNS for GitHub Pages: four `A` records for the apex (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`), `CNAME www → <login>.github.io`, and the `TXT` verification record from GitHub → Settings → Pages. Then set the custom domain, wait for the certificate and enforce HTTPS. If the certificate does not appear within about an hour, remove the domain in the Pages settings and add it again.
 6. **After the domain is known:**
-   - add `og:url` and an `og:image` (1200×630, JPEG/PNG in `assets/`) for LinkedIn previews;
-   - consider `rel="canonical"`;
-   - change the form subject line if needed;
+   - done on 10 November 2026: `og:url`, `og:image` (`assets/og-image.png`, 1200×630) and `rel="canonical"` on every page; the form subject line stays as it is;
+      - change the form subject line if needed;
    - remind the owner to add the URL to LinkedIn and to his master CV.
 7. **Impressum:** not required for a purely personal page. If the site ever offers paid services, it becomes commercial and an Impressum with an address under § 5 DDG is mandatory. The address must not be written into this repository before that decision.
-8. **Cleaning history** (only on request): squash to one commit, and delete old Actions runs and Deployments. Old versions only disappear completely when the repository is re-created.
+8. **Cleaning history** (only on request): squash to one commit, and delete old Actions runs and Deployments. Old versions only disappear completely when the repository is re-created. The ruleset "Protect main" blocks the force push this needs: disable it for that one push and turn it back on.
 9. After updates, view the site with a hard reload (Cmd+Shift+R).
 
 ## 11. Open decisions (waiting for the owner)
@@ -430,7 +431,12 @@ Nothing in this section is done without an explicit request in the current sessi
 - **Tomsk unit name:** the CV says "Laboratory of High-Current Betatrons". The old site named the "Institute of Non-Destructive Testing". Show both, or only one?
 - **Master's degree name:** LinkedIn lists the 2011 – 2013 master's as "Electronics and Microelectronics"; `cv.html` gives the M.Sc. as "Electronic Control and Diagnostic Systems in Engineering and Medicine" and the B.Sc. as "Electronics and Microelectronics". The owner checks which is right.
 - **Portrait** on About: keep this photo?
-- **Before publishing:** creating the GitHub repository `KonstSu/konst-su.fyi`, the Pages workflow and DNS. The GitHub account is KonstSu; the domain `konst-su.fyi` is registered at Porkbun (both 2026-11-10). The contact form works: key set and tested by the owner on 2026-11-09. Hosting is decided: GitHub Pages (2026-11-09).
+- **Domain and DNS hardening (security audit, 2026-11-10; the owner sets these at Porkbun):**
+  - verify `konst-su.fyi` in his GitHub account (Settings → Pages → Add a verified domain, TXT record); this protects against domain takeover;
+  - no-mail records against spoofing: TXT `@` `v=spf1 -all`, TXT `_dmarc` `v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s`, optionally null MX (`MX 0 .`);
+  - CAA `0 issue "letsencrypt.org"` and `0 issuewild ";"` (GitHub Pages certificates come from Let's Encrypt);
+  - DNSSEC on at Porkbun; 2FA on GitHub, Porkbun and the mailbox behind Web3Forms; auto-renewal on (the domain expires 2027-11-09).
+  After he sets them, check them with `dig` against a public resolver. The contact form works: key set and tested by the owner on 2026-11-09. Hosting is decided: GitHub Pages (2026-11-09).
 - **ESP:** the glossary in `cv.html` has no entry for it yet. The owner gives the expansion; never guess it.
 
 Remove items here once they are decided, and record the decision where it belongs: in the pages, in §4 or in the README.

@@ -16,6 +16,7 @@ Static checks:
   - every local link, image, script, stylesheet and #anchor resolves to a public file;
   - no external scripts, stylesheets, fonts or images (fonts are self-hosted);
   - every page has lang, <title>, meta description and the same Content-Security-Policy;
+  - rel="canonical" and og:url give the page's own address under SITE; og:image is a public file;
   - no inline <script>/<style>, style="" or on*="" attributes (the CSP blocks them anyway);
   - target="_blank" links carry rel="noopener";
   - every <img> has alt, width and height; JPEG/PNG files carry no EXIF/XMP/IPTC/text metadata;
@@ -47,6 +48,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PUBLIC_DIRS = ("assets", "science")
 JUNK = {".DS_Store", "Thumbs.db", "desktop.ini"}
 DIST_MARK = ".konst-site-dist"
+SITE = "https://konst-su.fyi/"   # public address of the site
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 WIDTHS = (360, 390, 1440)
 
@@ -94,6 +96,7 @@ class Page(HTMLParser):
         self.refs: list[tuple[str, str, int]] = []      # (tag, url, line)
         self.imgs: list[tuple[int, dict]] = []
         self.csp = self.title = self.desc = self.lang = None
+        self.canonical = self.og_url = self.og_image = None
         self.inline_scripts: list[int] = []
         self.style_tags: list[int] = []
         self.style_attrs: list[int] = []
@@ -124,6 +127,10 @@ class Page(HTMLParser):
                 self.csp = a.get("content", "")
             if a.get("name") == "description":
                 self.desc = a.get("content", "")
+            if a.get("property") == "og:url":
+                self.og_url = a.get("content", "")
+            if a.get("property") == "og:image":
+                self.og_image = a.get("content", "")
         elif tag == "title":
             self._in_title = True
             self.title = ""
@@ -136,6 +143,8 @@ class Page(HTMLParser):
         elif tag == "style":
             self.style_tags.append(line)
             self._skip = True
+        elif tag == "link" and "canonical" in a.get("rel", "").split():
+            self.canonical = a.get("href", "")
         elif tag == "link" and a.get("href"):
             self.refs.append(("link", a["href"], line))
         elif tag == "a" and "href" in a:
@@ -254,6 +263,15 @@ def check_static(r: Report, strict: bool) -> dict[Path, Page]:
                             ("style=\"\" attribute", pg.style_attrs), ("on*=\"\" handler", pg.handlers)):
             if lines:
                 r.err(f"{name}:{lines[0]}: {what} ({len(lines)}×); the CSP blocks it — use assets/css or assets/js")
+        own = SITE + ("" if name == "index.html" else name)
+        if pg.canonical != own:
+            r.err(f"{name}: rel=\"canonical\" is {pg.canonical!r}, expected {own!r}")
+        if pg.og_url is not None and pg.og_url != own:
+            r.err(f"{name}: og:url is {pg.og_url!r}, expected {own!r}")
+        if pg.og_image is not None:
+            img = ROOT / pg.og_image[len(SITE):] if pg.og_image.startswith(SITE) else None
+            if img is None or not img.is_file() or img.resolve() not in public:
+                r.err(f"{name}: og:image {pg.og_image!r} is not a public file under {SITE}")
         for line in pg.no_noopener:
             r.err(f"{name}:{line}: target=\"_blank\" without rel=\"noopener\"")
         for line, a in pg.imgs:

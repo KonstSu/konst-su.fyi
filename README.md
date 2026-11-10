@@ -1,6 +1,6 @@
 # konst-site — личный сайт Константина Сухарникова
 
-**Статус:** черновик от 2026-11-09, **не опубликован**. Git — локально с 10.11.2026, на GitHub будет `KonstSu/konst-su.fyi` (см. «Перед публикацией»).
+**Статус:** **опубликован** 10.11.2026: https://konst-su.fyi/ (HTTPS обязателен; репозиторий `KonstSu/konst-su.fyi`, публичный). **Каждый push в `main` сразу обновляет сайт.**
 
 **Для агентов (Claude Code и др.):** все правила, факты, дизайн-система, рецепты и шаги публикации — в [`AGENTS.md`](AGENTS.md) (`CLAUDE.md` его подключает). Репозиторий самодостаточный: другие репозитории к сессии прикреплять не нужно. Исключение — генератор Science & Space читает соседние папки explorer'ов (только чтение).
 
@@ -82,13 +82,15 @@ python3 tools/build_science.py             # собрать science/ и блок
 Факты, которые уже есть на сайте, но ещё не внесены в master. Пометок на сайте для них больше нет (09.11.2026 решил: master сейчас не в приоритете), список — просто напоминание.
 - [ ] Публикации: 6 статей с DOI (`cv.html#publications`)
 - [ ] HED/MID «Selected work» со старого сайта (2018–2022): HED controls, IC1, MID XSIS, IPM, Karabo devices
+- [ ] Адрес сайта https://konst-su.fyi/ — в CV master и в LinkedIn (раздел Contact info → Website)
 
 ## Перед публикацией
 1. **Жёлтые пометки** `[confirm: …]` / `[missing: …]`: на 09.11.2026 их нет, все разобраны. VEFK/ESP подтверждены, без года. ASIC без техпроцесса. PhD без темы и срока. Хостинг — GitHub Pages. Если появятся новые: `python3 tools/check_site.py` или `grep -o 'class="todo">[^<]*' *.html`.
 2. **Web3Forms:** готово. Ключ на мою почту вставлен в `contact.html`, тестовое письмо пришло (09.11.2026). Если начнётся спам — создать новый ключ и заменить одну строку.
-3. **Домен:** `konst-su.fyi`, куплен на Porkbun 10.11.2026. Проверить, что включены WHOIS privacy и автопродление. В DNS на Porkbun сначала удалить записи-заглушки парковки, потом добавить записи GitHub Pages (AGENTS.md §10.5). Добавить `og:url` и `og:image` (картинка 1200×630) для превью в LinkedIn; поменять тему письма формы.
+3. **Домен:** https://konst-su.fyi/ работает с 10.11.2026: куплен на Porkbun, DNS настроен, HTTPS обязателен, `www` и `http` перенаправляются. На всех страницах есть `og:url`, `canonical` и картинка превью `assets/og-image.png` (исходник — `tools/og_card.html`). Осталось: подтвердить домен в GitHub (Settings → Pages → Add a verified domain, TXT-запись на Porkbun) — защита от захвата домена; проверить на Porkbun WHOIS privacy и автопродление.
 4. **Git:** аккаунт KonstSu. До первого коммита задать в папке своё имя и скрытую почту GitHub `KonstSu@users.noreply.github.com` (не рабочую почту из глобальной настройки; сверено в GitHub → Settings → Emails 10.11.2026), `credential.helper` = `!gh auth git-credential`, проверить активный аккаунт в `gh`. Подробно, вместе с хостингом и DNS: AGENTS.md §10.
 5. **Impressum:** пока не нужен для личной страницы; если на сайте появятся платные услуги, он обязателен (§ 5 DDG).
 6. **Science & Space прямо перед публикацией:** `/digest` в обоих explorer'ах → `--check` → обновить stale → собрать. Отсчёт в браузере сам убирает прошедшие события, но списки «Coming up / Recently» обновляются только при сборке.
 7. `python3 tools/check_site.py --layout` и глазами: страницы на компьютере и в ширине 390 px. Выгружать только `dist/` из `python3 tools/check_site.py --dist`.
 8. **Фото:** на Projects только фото HED и бетатронов (решение 09.11.2026). Остальные файлы со старого сайта удалены из `assets/img/` 10.11.2026.
+9. **Безопасность (аудит 10.11.2026).** Сделано: вики и Projects в репозитории выключены, `main` защищена от force-push и удаления (правило «Protect main»), Actions — только действия GitHub с закреплёнными SHA. Осталось на Porkbun: TXT-подтверждение домена в GitHub; `v=spf1 -all` (TXT `@`) и `v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s` (TXT `_dmarc`) против писем от имени домена; CAA `0 issue "letsencrypt.org"` и `0 issuewild ";"`; DNSSEC. Проверить 2FA на GitHub, Porkbun и почте. Подробно — AGENTS.md §10–11.

@@ -122,6 +122,8 @@ SUBNAV = [
     ("method", "Method"),
 ]
 
+SITE = "https://konst-su.fyi/"   # public address; canonical, og:url and og:image use it
+OG_ALT = "Konstantin Sukharnikov — Scientific instrumentation. Detector electronics, European XFEL, Hamburg."
 CSP = ("default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; "
        "font-src 'self'; connect-src https://api.web3forms.com; "
        "form-action https://api.web3forms.com https://web3forms.com; base-uri 'self'; "
@@ -789,6 +791,7 @@ def page(site: Site, *, slug: str, title: str, description: str, depth: int, bod
     fkeys = "".join(
         f'<a href="{esc(rel(h, depth))}"{current if h == cur_key else ""}><b>{n}</b><span>{l}</span></a>'
         for n, l, h in FKEYS) + '<a href="#"><b>10</b><span>Top</span></a>'
+    url = f"{SITE}science/{sub}/{slug}.html" if depth == 2 else f"{SITE}science/{slug}.html"
     full_title = f"{title} — Science & Space — Konstantin Sukharnikov" if slug != "index" else \
         "Science & Space — Konstantin Sukharnikov"
     return f"""<!doctype html>
@@ -803,6 +806,12 @@ def page(site: Site, *, slug: str, title: str, description: str, depth: int, bod
   <meta property="og:type" content="website">
   <meta property="og:title" content="{esc(full_title)}">
   <meta property="og:description" content="{esc(description)}">
+  <meta property="og:url" content="{url}">
+  <meta property="og:image" content="{SITE}assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{esc(OG_ALT)}">
+  <link rel="canonical" href="{url}">
   <link rel="icon" href="{rel('assets/favicon.svg', depth)}" type="image/svg+xml">
   <link rel="preload" href="{rel('assets/fonts/jetbrains-mono-latin-400-normal.woff2', depth)}" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{rel('assets/css/style.css', depth)}">
