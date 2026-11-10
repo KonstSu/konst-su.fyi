@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Layout check</title>
+<!-- Used by tools/check_site.py --layout (served from the repository root, never uploaded).
+     Loads every page in an iframe at each width and reports elements that stick out
+     to the right (horizontal page scroll). Parameters come in the hash:
+     #w=360,390,1440&p=index.html,about.html,... -->
+</head>
+<body style="margin:0">
+<pre id="out">pending</pre>
+<script>
+(function () {
+  var q = {};
+  location.hash.slice(1).split("&").forEach(function (kv) {
+    var i = kv.indexOf("="); if (i > 0) q[kv.slice(0, i)] = decodeURIComponent(kv.slice(i + 1));
+  });
+  var widths = (q.w || "360,390,1440").split(",").map(Number);
+  var pages = (q.p || "index.html").split(",");
+  var jobs = [], out = [];
+  widths.forEach(function (w) { pages.forEach(function (p) { jobs.push([w, p]); }); });
+  // Elements allowed to extend past the viewport: skip link, honeypot field, scrolling tables.
+  var ALLOWED = ".skip, .hp, .table-wrap";
+  function next() {
+    if (!jobs.length) { document.getElementById("out").textContent = out.join("\n"); document.title = "done"; return; }
+    var job = jobs.shift(), w = job[0], p = job[1];
+    var f = document.createElement("iframe");
+    f.style.cssText = "width:" + w + "px;height:900px;border:0";
+    f.onload = function () {
+      setTimeout(function () {
+        var d = f.contentDocument, de = d.documentElement, over = [];
+        d.querySelectorAll("body *").forEach(function (e) {
+          if (over.length >= 3 || e.closest(ALLOWED)) return;
+          var r = e.getBoundingClientRect();
+          if (r.width > 0 && r.right > w + 0.5) over.push(e.tagName.toLowerCase() + (e.className ? "." + String(e.className).trim().replace(/\s+/g, ".") : ""));
+        });
+        var bad = de.scrollWidth > w || over.length;
+        out.push(w + " " + p + (bad ? " OVER scrollWidth=" + de.scrollWidth + " " + over.join(" | ") : " ok"));
+        f.remove(); next();
+      }, 300);
+    };
+    f.src = "../" + p;
+    document.body.appendChild(f);
+  }
+  next();
+})();
+</script>
+</body>
+</html>
