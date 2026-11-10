@@ -62,6 +62,7 @@ konst-site/
 │   ├── results.md, launches.md, method.md
 ├── data/calendar.json    Calendar translations, public exclusions, conference links, teaser settings
 ├── data/private.json     LOCAL ONLY, git-ignored: rules that name non-public XFEL information (§4.5)
+├── .github/workflows/pages.yml   GitHub Pages deploy: check_site.py --dist, upload dist/ (§10)
 ├── tools/
 │   ├── build_science.py  Generator for science/ and the home-page teaser
 │   ├── check_site.py     Pre-publication checks; assembles dist/ for upload
@@ -412,8 +413,8 @@ Nothing in this section is done without an explicit request in the current sessi
    - `git init` in this folder.
    - Set a local identity **before the first commit**: `git config user.name "Konstantin Sukharnikov"` and `git config user.email "KonstSu@users.noreply.github.com"` (the hidden address of his GitHub account KonstSu, as shown under GitHub → Settings → Emails; confirmed by the owner on 10 November 2026). The global git config on his Mac uses his work e-mail address, which must never enter the public history. Check with `git config user.email` before committing.
    - `git config credential.helper '!gh auth git-credential'`, then check that `gh auth status` shows the owner's account as active (several accounts may be logged in; switch with `gh auth switch`). A wrong account causes a 403 error on push.
-   - Commit only what the owner asked for. Messages in English, imperative mood.
-4. **Hosting (plan: GitHub Pages).** The repository must be public on the free plan, so review that every tracked file is publishable (this file and the README included). Deploy `dist/` through a GitHub Actions Pages workflow: run `check_site.py --dist`, upload `dist/`, deploy. Pin the action versions to current releases and check them at the time of setup. Serving the repository root is the fallback; in that case add `.nojekyll` at the root, accept that the source files become visible, and remember that Jekyll would otherwise render `content/*.md`.
+   - Commit only what the owner asked for. Messages in English, imperative mood. Keep the standard `Co-Authored-By` and session trailers in commit messages: the owner accepts them in the git history (10 November 2026). The site itself still never names the tool (§8.1).
+4. **Hosting: GitHub Pages**, public repository `KonstSu/konst-su.fyi`. Every tracked file is public, this file and the README included. `.github/workflows/pages.yml` runs `check_site.py --dist` on every push to `main`, uploads `dist/` and deploys it. Its actions are pinned to commit SHAs (checkout v7.0.1, upload-pages-artifact v5.0.0, deploy-pages v5.0.1, checked 10 November 2026); when updating, look up the current release and its SHA. In the repository settings, Pages → Source must be "GitHub Actions". Serving the repository root is the fallback; in that case add `.nojekyll` at the root, accept that the source files become visible, and remember that Jekyll would otherwise render `content/*.md`.
 5. **Domain:** `konst-su.fyi`, registered by the owner at Porkbun on 10 November 2026. Keep WHOIS privacy and auto-renewal on, without extras. At Porkbun, first delete the default parking records (`ALIAS`/`CNAME` to Porkbun's parking host). DNS for GitHub Pages: four `A` records for the apex (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`), `CNAME www → <login>.github.io`, and the `TXT` verification record from GitHub → Settings → Pages. Then set the custom domain, wait for the certificate and enforce HTTPS. If the certificate does not appear within about an hour, remove the domain in the Pages settings and add it again.
 6. **After the domain is known:**
    - add `og:url` and an `og:image` (1200×630, JPEG/PNG in `assets/`) for LinkedIn previews;
