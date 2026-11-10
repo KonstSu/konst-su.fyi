@@ -1329,7 +1329,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .split, .cv-section, .contact-grid, .legal, .home-index, .home-next, .sci-sec,
   .item-main, .item-aside, .proj-list, .cal-section, .author-in { padding-left: 12px; padding-right: 12px; }
   .card-name { font-size: 30px; }
-  .fkeys a { flex: 1 1 33%; }
+  /* Phones: the header nav already lists every page, so only "10 Top" stays */
+  .fkeys { justify-content: flex-end; padding: 10px var(--gutter) 14px; }
+  .fkeys a { display: none; }
+  .fkeys a:last-child { display: flex; flex: 0 0 auto; border: 1px solid var(--cga-cyan); }
+  .fkeys a:last-child span { padding: 5px 2ch; }
+  .fkeys a:last-child span::after { content: " \2191"; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cursor { animation: none; }
