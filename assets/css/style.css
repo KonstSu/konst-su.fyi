@@ -325,6 +325,10 @@ a.ext::after { content: "\2009\2197"; font-size: .85em; }
 
 .skill-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px clamp(24px, 4vw, 56px); }
 .skill-groups h3 { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+.skill-groups .skill-wide { grid-column: 1 / -1; }
+.skill-note { color: var(--muted); max-width: var(--text-max); margin-bottom: 12px; }
+.skill-split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px clamp(24px, 4vw, 56px); }
+.skill-split h4 { font-size: 14px; font-weight: 600; color: var(--head); margin-bottom: 10px; }
 .tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .tags li { border: 1px solid var(--line); background: rgba(255,255,255,.55); padding: 6px 12px; font-size: 14px; }
 
@@ -459,7 +463,7 @@ a.ext::after { content: "\2009\2197"; font-size: .85em; }
 @media (max-width: 900px) {
   .hero-meta { grid-template-columns: 1fr 1fr; }
   .split, .contact-grid { grid-template-columns: 1fr; }
-  .skill-groups { grid-template-columns: 1fr; }
+  .skill-groups, .skill-split { grid-template-columns: 1fr; }
   .ev { grid-template-columns: minmax(150px, 3fr) minmax(0, 7fr); }
   .ev-cat { grid-column: 2; }
 }

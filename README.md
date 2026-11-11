@@ -84,9 +84,14 @@ python3 tools/build_science.py             # собрать science/ и блок
 - [ ] Публикации: 6 статей с DOI (`cv.html#publications`)
 - [ ] HED/MID «Selected work» со старого сайта (2018–2022): HED controls, IC1, MID XSIS, IPM, Karabo devices
 - [ ] Адрес сайта https://konst-su.fyi/ — в CV master и в LinkedIn (раздел Contact info → Website)
+- [ ] Годы допуска: EFK с 2021, VEFK с 2024 (11.11.2026); год ESP не указан
+- [ ] Навыки: «Analogue electronics and amplifiers»; в ASIC — open-source toolchain (Tiny Tapeout) (11.11.2026)
+- [ ] Навыки: программы вынесены в «Software tools»; CAD — Siemens NX, FreeCAD вместо Solid Edge, SolidWorks (11.11.2026)
+- [ ] Software tools: Altium (вместо Altium Designer, Altium 365), SPICE (LTspice, ngspice); раздел «Software and tools» поделён на «Programming and controls» и «Tools» с общим комментарием про AI (11.11.2026)
+- [ ] Profile CV переписан с уклоном на системную инженерию сложных научных инструментов и детекторов; DEPFET, LGAD, JUNGFRAU и GOTTHARD-II больше не называются, вместо них «fast X-ray detectors» (11.11.2026)
 
 ## Перед публикацией
-1. **Жёлтые пометки** `[confirm: …]` / `[missing: …]`: на 09.11.2026 их нет, все разобраны. VEFK/ESP подтверждены, без года. ASIC без техпроцесса. PhD без темы и срока. Хостинг — GitHub Pages. Если появятся новые: `python3 tools/check_site.py` или `grep -o 'class="todo">[^<]*' *.html`.
+1. **Жёлтые пометки** `[confirm: …]` / `[missing: …]`: на 09.11.2026 их нет, все разобраны. VEFK/ESP подтверждены; годы: EFK 2021, VEFK 2024 (11.11.2026), ESP без года. ASIC без техпроцесса. PhD без темы и срока. Хостинг — GitHub Pages. Если появятся новые: `python3 tools/check_site.py` или `grep -o 'class="todo">[^<]*' *.html`.
 2. **Web3Forms:** готово. Ключ на мою почту вставлен в `contact.html`, тестовое письмо пришло (09.11.2026). Если начнётся спам — создать новый ключ и заменить одну строку.
 3. **Домен:** https://konst-su.fyi/ работает с 10.11.2026: куплен на Porkbun, DNS настроен, HTTPS обязателен, `www` и `http` перенаправляются. На всех страницах есть `og:url`, `canonical` и картинка превью `assets/og-image.png` (исходник — `tools/og_card.html`). Домен подтверждён в GitHub 10.11.2026.
 4. **Git:** аккаунт KonstSu. До первого коммита задать в папке своё имя и скрытую почту GitHub `KonstSu@users.noreply.github.com` (не рабочую почту из глобальной настройки; сверено в GitHub → Settings → Emails 10.11.2026), `credential.helper` = `!gh auth git-credential`, проверить активный аккаунт в `gh`. Подробно, вместе с хостингом и DNS: AGENTS.md §10.
