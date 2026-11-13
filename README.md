@@ -38,7 +38,7 @@ python3 tools/check_site.py --dist     # строгая проверка и сб
 
 ## Explore (раздел про науку и космос)
 До 10.11.2026 назывался «Science & Space»; переименован везде на сайте. Файлы (`science/`, `build_science.py`) названия сохранили.
-Страницы: Overview (Next up с отсчётом, «Where they fly» от Солнца до пояса Койпера, установки по стадиям, свежие результаты, ближайшие события), Missions (18 карточек с фильтрами и поиском), Facilities (31, с 09.11.2026 вместе с синхротронами), отдельная страница у каждой миссии и установки, Calendar, Results, Launches, Method.
+Страницы: Overview (Next up с отсчётом, «Where they fly» от Солнца до пояса Койпера, установки по стадиям, свежие результаты, ближайшие события), Missions (37 карточек с фильтрами и поиском; с 13.11.2026 — Луна/Artemis, марсианские орбитальные аппараты, SOHO/STEREO-A и регион «Earth orbit»), Facilities (31, с 09.11.2026 вместе с синхротронами), отдельная страница у каждой миссии и установки, Calendar, Results, Launches, Method.
 
 Раздел подан как моё хобби: «science and space enthusiast» (09.11.2026). На каждой странице раздела есть строка «A hobby. … by a science and space enthusiast. I am not involved in these missions or facilities…», внизу — блок об авторе со ссылками на Projects и CV. На страницах миссий есть плашка «Not affiliated with …». European XFEL помечен «Where I work»: я там работаю, но страница не говорит от имени компании.
 

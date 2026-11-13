@@ -1,6 +1,6 @@
 ---
 source: space-explorer/launches.md
-source_hash: 5943cbd1cc57
+source_hash: 1124c55aa26b
 checked: 2026-11-03
 ---
 
@@ -27,11 +27,26 @@ No other interplanetary launches are scheduled before the end of 2026.
 | 2031-12 | EnVision | Venus | ESA | Ariane 64 | |
 | 2035 | LISA | Heliocentric orbit (gravitational waves) | ESA / NASA | Ariane 64 | |
 
-## The Moon, briefly
+## The Moon: Artemis and rovers
 | NET | Mission | Note |
 |---|---|---|
-| 2027 | **Chang'e-7** (CNSA), Long March 5 | Missed the 23–24 August 2026 window; partners (NARIT) speak of 2027 — [Space.com](https://www.space.com/space-exploration/launches-spacecraft/bad-weather-delays-launch-of-chinas-historic-change-7-mission-to-moons-south-pole), [Wikipedia](https://en.wikipedia.org/wiki/Chang'e_7) |
-| 2027-01 | Griffin Mission One (Astrobotic), Falcon Heavy | NASA CLPS |
+| 2027-01 | **Griffin-1 with the FLIP rover** (Astrobotic / Astrolab), Falcon Heavy | In October NASA wrote "late 2026": [mission page](mission:flip) |
+| 2027, Q1 | Blue Moon Mark 1 "Endurance" (Blue Origin), New Glenn | Moon Base I; date from [Wikipedia](https://en.wikipedia.org/wiki/Blue_Moon_Pathfinder_Mission_1), NASA said autumn 2026 in May |
+| 2027 | **VIPER** (NASA) on Blue Moon Mark 1, New Glenn | [mission page](mission:viper) |
+| 2027, mid-year | **Artemis III** (NASA), SLS | Low Earth orbit, dockings with Blue Moon Mark 2 and Starship: [mission page](mission:artemis-3) |
+| 2028 | **Artemis IV** (NASA), SLS | First landing: [mission page](mission:artemis-4) |
+| 2028 | LTV rovers CLV-1 and Pegasus, Blue Origin | [mission page](mission:ltv) |
+| 2028, end | **PROMISE** (NASA / JPL) on Blue Moon Mark 1 | [mission page](mission:promise) |
+
+## AI in orbit
+| NET | Mission | Note |
+|---|---|---|
+| 2027 | Project Suncatcher, two satellites (Google / Planet) | Laser link between the satellites: [mission page](mission:suncatcher) |
+
+## The Moon, other missions in brief
+| NET | Mission | Note |
+|---|---|---|
+| 2027 | **Chang'e-7** (CNSA), Long March 5: [mission page](mission:chang-e-7) | Missed the 23–24 August 2026 window; partners (NARIT) speak of 2027 — [Space.com](https://www.space.com/space-exploration/launches-spacecraft/bad-weather-delays-launch-of-chinas-historic-change-7-mission-to-moons-south-pole), [Wikipedia](https://en.wikipedia.org/wiki/Chang'e_7) |
 | 2027, Q1 | IM-3 (Intuitive Machines), Falcon 9 | NASA CLPS |
 | 2027 | Blue Ghost 2 (Firefly) | Far side of the Moon |
 | 2027 | Chandrayaan-4 (ISRO), two LVM-3 launches | Sample return |

@@ -6,7 +6,7 @@ Instructions for AI coding agents working on this repository. Claude Code reads 
 
 This repository is **public** (`KonstSu/konst-su.fyi`; GitHub Pages on the free plan needs a public repository). Everything in it, this file included, must be safe to publish: no personal data, no internal European XFEL information, no job-search plans, no local paths.
 
-Last reviewed: 2026-11-11.
+Last reviewed: 2026-11-13.
 
 ---
 
@@ -46,7 +46,7 @@ konst-site/
 ├── cv.html               Full CV — the canonical fact base of the site
 ├── contact.html          Web3Forms contact form ("NC dialog") and LinkedIn
 ├── privacy.html          Privacy policy (template, not reviewed by a lawyer; noindex)
-├── science/              GENERATED Explore section (56 pages). Never edit by hand
+├── science/              GENERATED Explore section (75 pages). Never edit by hand
 ├── assets/
 │   ├── css/style.css     The only stylesheet: base styles first, retro theme layer after the "Retro" banner
 │   ├── js/retro.js       Menu-bar clock and footer "Last modified" (all pages)
@@ -321,7 +321,7 @@ The section was called "Science & Space" until 10 November 2026; the owner renam
 
 ### 8.1 What it is and how it is framed
 
-An English sub-site with interplanetary missions (18 cards), big-science facilities (31 cards: X-ray lasers, synchrotrons, gravitational waves, neutrinos, telescopes, neutrons, particle physics), a calendar, notable results, upcoming launches and a Method page. It exists to make visitors curious and lead them to the owner's own work. It is not a news service.
+An English sub-site with missions (37 cards: interplanetary probes, the Moon and Artemis, solar observatories, and since 13 November 2026 one Earth-orbit technology demonstrator), big-science facilities (31 cards: X-ray lasers, synchrotrons, gravitational waves, neutrinos, telescopes, neutrons, particle physics), a calendar, notable results, upcoming launches and a Method page. It exists to make visitors curious and lead them to the owner's own work. It is not a news service.
 
 - It is framed as the owner's **hobby**: he is a science and space enthusiast (his wording, 9 November 2026). Do not call it a "side project".
 - Every section page carries the line "A hobby. An independent overview compiled from public sources by a science and space enthusiast. I am not involved in these missions or facilities…" and ends with the author block linking to Projects and the CV.

@@ -64,7 +64,7 @@ MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 REGIONS = [  # inner to outer solar system
-    ("sun", "Sun"), ("mercury", "Mercury"), ("venus", "Venus"), ("moon", "Moon"),
+    ("sun", "Sun"), ("mercury", "Mercury"), ("venus", "Venus"), ("orbit", "Earth orbit"), ("moon", "Moon"),
     ("mars", "Mars"), ("small-bodies", "Asteroids & comets"), ("jupiter", "Jupiter"),
     ("saturn", "Saturn"), ("outer", "Kuiper belt & beyond"),
 ]
@@ -170,6 +170,15 @@ def fmt_iso(s: str) -> str:
         return fmt_day(date.fromisoformat(s))
     except (TypeError, ValueError):
         return s or "unknown"
+
+
+def fmt_launch(s: str) -> str:
+    """Launch date from a source card: ISO day, or 'YYYY[-MM] (план|NET)' for missions not yet flown."""
+    m = re.match(r"^(\d{4})(?:-(\d{2}))?\s*\((план|NET)\)$", (s or "").strip())
+    if not m:
+        return fmt_iso(s)
+    when = f"{MONTHS[int(m.group(2)) - 1]} {m.group(1)}" if m.group(2) else m.group(1)
+    return f"{when} (planned)" if m.group(3) == "план" else f"no earlier than {when}"
 
 
 def split_doc(text: str) -> tuple[dict[str, str], str]:
@@ -969,7 +978,8 @@ def item_page(site: Site, item: Item, prev_it: Item | None, next_it: Item | None
     facts = [("Status", status_html(item))]
     if is_m:
         if item.src.get("launch_date"):
-            facts.append(("Launched", esc(fmt_iso(item.src["launch_date"]))))
+            facts.append(("Launch" if item.status == "upcoming" else "Launched",
+                          esc(fmt_launch(item.src["launch_date"]))))
         if m.get("target"):
             facts.append(("Target", esc(m["target"])))
         if m.get("agencies"):
