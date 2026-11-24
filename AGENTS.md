@@ -341,7 +341,7 @@ The sources are the owner's two research projects in **sibling folders** (writte
 
 From the sources the generator takes structural fields: `status`, `region`, `domain`, `launch_date`, `official` and the calendar rows. All visible text comes from the English layer in this repository: `content/` and `data/calendar.json`.
 
-Each English file has front matter with `source_hash` (a hash of the Russian source at translation time) and `checked` (the date the text is valid for). Missions also carry `tagline` and `next_event`. An optional `official` overrides the source's official link when that link has gone dead (since 24 November 2026 for Hera, BepiColombo, Juice, Mars Express and Solar Orbiter, after ESA moved its website); tell the owner, so the source can be fixed and the override dropped.
+Each English file has front matter with `source_hash` (a hash of the Russian source at translation time) and `checked` (the date the text is valid for). Missions also carry `tagline` and `next_event`. An optional `official` overrides the source's official link when that link has gone dead (in use since 24 November 2026 for Mars Express, after ESA moved its website, until the source card is committed); tell the owner, so the source can be fixed and the override dropped.
 
 - **Source unchanged:** the page shows the source's latest "as of" date.
 - **Source changed:** the card is reported `stale`. The site keeps showing the previous English text with its own older date and never mixes languages.

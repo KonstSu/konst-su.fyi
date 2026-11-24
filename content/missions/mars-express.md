@@ -5,7 +5,7 @@ target: Mars
 kind: Orbiter
 tagline: ESA's first mission to Mars, in orbit since 2003; funded until the end of 2026, with an extension to 2029 requested.
 next_event: 2026-12-31 — current funding ends; an extension to the end of 2029 has been requested
-source_hash: 20400c163ef5
+source_hash: d94b09bbb8d0
 official: https://sci.esa.int/web/mars-express
 checked: 2026-11-09
 ---

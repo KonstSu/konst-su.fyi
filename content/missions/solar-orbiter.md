@@ -5,8 +5,7 @@ target: The Sun (polar regions)
 kind: Solar probe
 tagline: Uses Venus flybys to tilt its orbit and look at the Sun's poles.
 next_event: 2026-12-24 — Venus flyby raises the orbit's tilt to 24°
-source_hash: 5c25285f731c
-official: https://sci.esa.int/web/solar-orbiter
+source_hash: cd44cbbe674a
 checked: 2026-11-03
 ---
 

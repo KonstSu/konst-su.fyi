@@ -5,8 +5,7 @@ target: Mercury
 kind: Two orbiters travelling together: ESA's Mercury Planetary Orbiter (MPO) and JAXA's Mio
 tagline: Two orbiters, one European and one Japanese, about to enter orbit around Mercury.
 next_event: 2026-11-21 — Mercury orbit insertion
-source_hash: 009ef8642c99
-official: https://sci.esa.int/web/bepicolombo
+source_hash: 54bd2014e1d9
 checked: 2026-11-03
 ---
 

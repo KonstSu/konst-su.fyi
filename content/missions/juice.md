@@ -6,8 +6,7 @@ target: Jupiter, Ganymede, Callisto and Europa
 kind: Orbiter; in 2034 it moves into orbit around Ganymede
 tagline: ESA's flagship to Jupiter's icy moons, which will become the first spacecraft to orbit another planet's moon.
 next_event: 2029-01 — final Earth gravity assist
-source_hash: ae818757f130
-official: https://sci.esa.int/web/juice
+source_hash: 719a1b4df597
 checked: 2026-11-03
 ---
 

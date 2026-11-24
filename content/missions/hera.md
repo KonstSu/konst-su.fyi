@@ -5,9 +5,8 @@ target: Binary asteroid (65803) Didymos and its moon Dimorphos
 kind: Orbiter with two CubeSats (Milani and Juventas)
 tagline: ESA's planetary-defence mission, arriving at the asteroid that NASA's DART knocked off course.
 next_event: 2026-11-25 — ESA expects to release the first detailed images of Dimorphos
-source_hash: 42d418041755
+source_hash: dbf72e872311
 checked: 2026-11-03
-official: https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-mission-overview
 ---
 
 ## Summary
