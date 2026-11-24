@@ -911,7 +911,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   text-shadow: 2px 0 0 rgba(255, 85, 255, .8), -2px 0 0 rgba(85, 255, 255, .8);
 }
 .home-name { font-size: clamp(64px, 12.5vw, 196px); line-height: .82; }
-.home-name:hover { animation: glitch .6s steps(2) 1; }
+/* Hover glitch on every heading (was the name only; owner's request, 23 November 2026) */
+h1:hover, h2:hover, h3:hover, h4:hover { animation: glitch .6s steps(2) 1; }
 @keyframes glitch {
   0% { text-shadow: 2px 0 0 rgba(255, 85, 255, .8), -2px 0 0 rgba(85, 255, 255, .8); transform: none; }
   25% { text-shadow: 6px 0 0 rgba(255, 85, 255, .9), -5px 0 0 rgba(85, 255, 255, .9); transform: translateX(2px); }
@@ -1350,7 +1351,7 @@ h1 .emo { font-size: .4em; vertical-align: .3em; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cursor { animation: none; }
-  .home-name:hover { animation: none; }
+  h1:hover, h2:hover, h3:hover, h4:hover { animation: none; }
 }
 @media print {
   body::before, .fkeys, .badges, .dos-path, .cursor, .sub-nav, .clock { display: none !important; }

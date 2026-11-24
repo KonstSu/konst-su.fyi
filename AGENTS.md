@@ -6,7 +6,7 @@ Instructions for AI coding agents working on this repository. Claude Code reads 
 
 This repository is **public** (`KonstSu/konst-su.fyi`; GitHub Pages on the free plan needs a public repository). Everything in it, this file included, must be safe to publish: no personal data, no internal European XFEL information, no job-search plans, no local paths.
 
-Last reviewed: 2026-11-13.
+Last reviewed: 2026-11-23.
 
 ---
 
@@ -332,7 +332,7 @@ An English sub-site with missions (37 cards: interplanetary probes, the Moon and
 
 ### 8.2 Data flow
 
-The sources are the owner's two Russian-language research projects in **sibling folders**, maintained by their own agents. They are **read-only** from here:
+The sources are the owner's two research projects in **sibling folders** (written in Russian; since 23 November 2026 they are moving to English file by file, and the generator accepts section headings, calendar headings and directions in both languages), maintained by their own agents. They are **read-only** from here:
 
 | Source | What is used |
 |---|---|
@@ -346,7 +346,8 @@ Each English file has front matter with `source_hash` (a hash of the Russian sou
 - **Source unchanged:** the page shows the source's latest "as of" date.
 - **Source changed:** the card is reported `stale`. The site keeps showing the previous English text with its own older date and never mixes languages.
 - **Card without an English file:** not published; `--check` reports it.
-- **Calendar row without a translation:** not published. The build adds an empty entry to `data/calendar.json` → `translations`. For rows without a mission or facility link, the translation is written as `Title: text`; links for such rows go into `links`.
+- **Calendar row already in English:** published as written (first letter capitalised); an entry in `translations` keyed by the English text overrides it, for example to turn a conference row into `Title: text`. Internal notes in English rows still need an override or a word to the owner.
+- **Calendar row without a translation (Russian):** not published. The build adds an empty entry to `data/calendar.json` → `translations`. For rows without a mission or facility link, the translation is written as `Title: text`; links for such rows go into `links`.
 - **Row matching an `exclude` rule:** never published (§4.5).
 - **Planned event whose date has passed:** moves to "Recently" with "Planned date has passed; outcome not yet confirmed." (`past_planned_note`) until a source confirms the outcome.
 

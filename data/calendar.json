@@ -1,5 +1,5 @@
 {
- "_readme": "Calendar config for tools/build_science.py. 'translations': Russian text from the source calendars -> English text on the site (empty = not yet translated, the event is left out). For rows without a facility link, write the English as 'Title: text'. 'links': English title -> URL for rows without a facility/mission card. 'exclude': rows containing 'match' are never published. Rules that would themselves reveal non-public information go into the local, git-ignored data/private.json instead.",
+ "_readme": "Calendar config for tools/build_science.py. 'translations': Russian text from the source calendars -> English text on the site (empty = not yet translated, the event is left out). Source text that is already English (the sources switched on 23 November 2026) is published as written, unless an entry here overrides it. For rows without a facility link, write the English as 'Title: text'. 'links': English title -> URL for rows without a facility/mission card. 'exclude': rows containing 'match' are never published. Rules that would themselves reveal non-public information go into the local, git-ignored data/private.json instead.",
  "teaser_count": 4,
  "past_planned_note": "Planned date has passed; outcome not yet confirmed.",
  "directions": {
@@ -36,6 +36,38 @@
    "label": "Fusion"
   },
   "PhD / детекторы": {
+   "cat": "conference",
+   "label": "Detector conferences"
+  },
+  "synchrotrons": {
+   "cat": "facility",
+   "label": "Synchrotrons"
+  },
+  "GW": {
+   "cat": "facility",
+   "label": "Gravitational waves"
+  },
+  "neutrinos": {
+   "cat": "facility",
+   "label": "Neutrinos"
+  },
+  "astro": {
+   "cat": "facility",
+   "label": "Astronomy"
+  },
+  "neutrons": {
+   "cat": "facility",
+   "label": "Neutrons"
+  },
+  "particles": {
+   "cat": "facility",
+   "label": "Particle physics"
+  },
+  "fusion": {
+   "cat": "facility",
+   "label": "Fusion"
+  },
+  "PhD / detectors": {
    "cat": "conference",
    "label": "Detector conferences"
   }
@@ -160,6 +192,17 @@
   "Запуск ядерного лунохода (конец года)": "Launch of the nuclear-powered lunar rover (end of the year)",
   "Запуск прототипа Google с TPU на борту (Transporter-18)": "Launch of Google's prototype with TPUs on board (Transporter-18)",
   "Объявлено о первом ответе модели Gemma 4 с орбиты": "First response of the Gemma 4 model from orbit announced",
-  "NASA объявило о ядерном луноходе, доставка — Blue Origin": "NASA announces a nuclear-powered lunar rover; Blue Origin to deliver it"
+  "NASA объявило о ядерном луноходе, доставка — Blue Origin": "NASA announces a nuclear-powered lunar rover; Blue Origin to deliver it",
+  "iWoRiD 2026, Ghent": "iWoRiD 2026: Ghent, Belgium",
+  "PIXEL2026, Miyazaki": "PIXEL2026: Miyazaki, Japan",
+  "SRI 2027, Campinas": "SRI 2027: Campinas, Brazil",
+  "VCI 2028, Vienna": "VCI 2028: Vienna, Austria",
+  "IEEE NSS/MIC 2027, Los Angeles (not confirmed)": "IEEE NSS/MIC 2027: Los Angeles (not yet confirmed)",
+  "IEEE NSS/MIC/RTSD 2026, Granada — post-conference reports not yet published": "IEEE NSS/MIC/RTSD 2026: Granada, Spain",
+  "Nobel Prize in Physics — Francis Halzen (IceCube)": "Nobel Prize in Physics 2026: awarded to Francis Halzen (IceCube)",
+  "✅ ESRF Council decision (22.12.2025)": "Decided by the ESRF Council (22 December 2025)",
+  "start of dark period (to 2029-06)": "Start of the dark period (until June 2029)",
+  "end of dark period; first beamlines 2029-09": "End of the dark period; first beamlines in September 2029",
+  "SOLEIL stops, ~2-year dark period including commissioning": "SOLEIL shuts down; dark period of about two years including commissioning"
  }
 }

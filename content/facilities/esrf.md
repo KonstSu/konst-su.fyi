@@ -6,8 +6,8 @@ operator: European Synchrotron Radiation Facility (international organisation)
 kind: High-energy fourth-generation storage ring (6 GeV, 844 m, emittance 130 pm·rad)
 tagline: The first high-energy fourth-generation synchrotron, the model for the upgrades that followed.
 next_event: 2027-02 (end) — ID24-ED leaves the user programme (budget cut of €5 million a year)
-source_hash: 184270529ed1
-checked: 2026-11-09
+source_hash: 2430a495452d
+checked: 2026-11-23
 ---
 
 ## Summary
@@ -15,6 +15,8 @@ The first high-energy fourth-generation synchrotron: 6 GeV, a circumference of 8
 
 ## Now
 **The programme is being cut back.** According to a notice of 22 December 2025, the ESRF Council required annual operating costs to fall by €5 million. The facility closes for seven consecutive days each year; ID06-LVP and ID24-ED leave the public user programme; time on ID28 and ID30A-3 (MASSIF-3) is halved. ID28 has run at half capacity since March 2026, ID06-LVP and ID30A-3 are reduced step by step from the second half of 2026, and ID24-ED runs until the end of February 2027. At the same time, the Council granted an exceptional contribution to restart frozen projects, including a nano-imaging beamline for the life sciences ([ESRF, 22 December 2025](https://www.esrf.fr/home/UsersAndScience/latest-news-for-users/content-news/esrf-news-list/important-update-strategic-adjustment-of-the-esrf-programme.html)). The 2027 schedule (updated 15 September 2026) has five user periods and 5,328 hours of user mode, with no long shutdown ([Operation 2027, PDF](https://www.esrf.fr/files/live/sites/www/files/operation/2027/operation%202027%20updated%2015sep%202026.pdf), [schedules](https://www.esrf.fr/home/Accelerators/Operation/operationschedules.html)).
+
+A science highlight: a chiral magnon signal in MnTe, measured with circularly polarised X-rays on ID32, is direct evidence of altermagnetism (Science, 29 October 2026; see Results).
 
 ## Key dates
 | Date | Event | Status |
@@ -24,7 +26,11 @@ The first high-energy fourth-generation synchrotron: 6 GeV, a circumference of 8
 | 2026-03 | ID28 at half capacity | as planned |
 | 2027-02 (end) | ID24-ED leaves the user programme | planned |
 
+## Results
+- 2026-10-29 — **Altermagnetism confirmed in MnTe:** the handedness (chirality) of magnons was seen by scattering left- and right-circularly polarised X-rays on ID32 — Jost D. et al., *Chiral altermagnon in MnTe*, Science 394, 541–543, [10.1126/science.adv3196](https://doi.org/10.1126/science.adv3196) — [SLAC](https://www6.slac.stanford.edu/news/2026-10-29-slac-researchers-find-proof-altermagnetism-new-magnetic-phase)
+
 ## Timeline
+- 2026-10-29 — SLAC/ESRF paper on altermagnetism in Science — [SLAC](https://www6.slac.stanford.edu/news/2026-10-29-slac-researchers-find-proof-altermagnetism-new-magnetic-phase)
 - 2026-09-15 — 2027 schedule updated — [ESRF](https://www.esrf.fr/home/Accelerators/Operation/operationschedules.html)
 - 2025-12-22 — "Strategic adjustment of the ESRF programme" — [ESRF](https://www.esrf.fr/home/UsersAndScience/latest-news-for-users/content-news/esrf-news-list/important-update-strategic-adjustment-of-the-esrf-programme.html)
 

@@ -130,6 +130,7 @@ CSP = ("default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' 
        "object-src 'none'; upgrade-insecure-requests")
 
 LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)\s]+)\)")
+CYRILLIC_RE = re.compile(r"[\u0400-\u04FF]")
 INTERNAL_REF_RE = re.compile(
     r"\s*(?:\(\s*\[[^\]]+\]\((?:phd|results|digests)/[^)]*\)\s*\)"
     r"|[—–-]\s*\[[^\]]+\]\((?:phd|results|digests)/[^)]*\))")
@@ -149,6 +150,11 @@ def esc(s: str) -> str:
 
 def norm(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip()
+
+
+def cap(s: str) -> str:
+    """Sentence case for calendar texts (English sources write them in lower case)."""
+    return s[:1].upper() + s[1:]
 
 
 def strip_md(s: str) -> str:
@@ -174,11 +180,11 @@ def fmt_iso(s: str) -> str:
 
 def fmt_launch(s: str) -> str:
     """Launch date from a source card: ISO day, or 'YYYY[-MM] (план|NET)' for missions not yet flown."""
-    m = re.match(r"^(\d{4})(?:-(\d{2}))?\s*\((план|NET)\)$", (s or "").strip())
+    m = re.match(r"^(\d{4})(?:-(\d{2}))?\s*\((план|plan|planned|NET)\)$", (s or "").strip())
     if not m:
         return fmt_iso(s)
     when = f"{MONTHS[int(m.group(2)) - 1]} {m.group(1)}" if m.group(2) else m.group(1)
-    return f"{when} (planned)" if m.group(3) == "план" else f"no earlier than {when}"
+    return f"no earlier than {when}" if m.group(3) == "NET" else f"{when} (planned)"
 
 
 def split_doc(text: str) -> tuple[dict[str, str], str]:
@@ -225,7 +231,7 @@ def table_rows(body: str, keep_header: bool = False) -> list[list[str]]:
 
 
 def updated_on(md: str) -> str:
-    m = re.search(r"Обновлено:\s*(\d{4}-\d{2}-\d{2})", md)
+    m = re.search(r"(?:Обновлено|Updated):\s*(\d{4}-\d{2}-\d{2})", md)
     return m.group(1) if m else ""
 
 
@@ -233,7 +239,7 @@ def source_hash(path: Path) -> str:
     """Hash of a source file, ignoring the 'last checked' / 'updated' stamps."""
     text = path.read_text(encoding="utf-8")
     text = re.sub(r"(?m)^last_checked:.*\n", "", text)
-    text = re.sub(r"_Обновлено:[^_]*_", "", text)
+    text = re.sub(r"_(?:Обновлено|Updated):[^_]*_", "", text)
     return hashlib.sha256(text.encode("utf-8")).hexdigest()[:12]
 
 
@@ -546,6 +552,8 @@ class Site:
         val = self.tr_map.get(key)
         if val:
             return val
+        if not CYRILLIC_RE.search(key):
+            return key                # source already in English; an entry in translations still overrides it
         if key not in self.tr_map:
             self.tr_map[key] = ""
         if key not in self.missing:
@@ -563,11 +571,12 @@ class Site:
     @staticmethod
     def bucket_of(heading: str) -> str | None:
         h = heading.lower()
-        if h.startswith("ближайш"):
+        # The sources moved from Russian to English headings on 23 November 2026; both are accepted.
+        if h.startswith(("ближайш", "next")):
             return "upcoming"
-        if h.startswith("дальше"):
+        if h.startswith(("дальше", "later")):
             return "later"
-        if h.startswith("недавно"):
+        if h.startswith(("недавно", "recent")):
             return "recent"
         return None
 
@@ -613,7 +622,7 @@ class Site:
                     bucket=bucket, when=when, cat="space",
                     cat_label="Space" + (f" · {region}" if region else ""),
                     title=title, ref=ref if item else None,
-                    url=item.official if item else "", text=text, note=note, order=i,
+                    url=item.official if item else "", text=cap(text), note=cap(note), order=i,
                 ))
         return events
 
@@ -661,7 +670,7 @@ class Site:
                     item = None       # an explicit link wins over the facility page
                 events.append(Event(
                     bucket=bucket, when=when, cat=direction["cat"], cat_label=direction["label"],
-                    title=title, ref=ref if item else None, url=url, text=text, note=note, order=i,
+                    title=title, ref=ref if item else None, url=url, text=cap(text), note=cap(note), order=i,
                 ))
         return events
 
