@@ -6,11 +6,12 @@ kind: Orbiter
 tagline: ESA's first mission to Mars, in orbit since 2003; funded until the end of 2026, with an extension to 2029 requested.
 next_event: 2026-12-31 — current funding ends; an extension to the end of 2029 has been requested
 source_hash: 20400c163ef5
+official: https://sci.esa.int/web/mars-express
 checked: 2026-11-09
 ---
 
 ## Summary
-ESA's first interplanetary mission to Mars: launched on 2 June 2003 and at Mars since December 2003 ([ESA — Mars Express](https://www.esa.int/Science_Exploration/Space_Science/Mars_Express)). It studies the planet's atmosphere, surface and interior, and the moon Phobos.
+ESA's first interplanetary mission to Mars: launched on 2 June 2003 and at Mars since December 2003 ([ESA — Mars Express](https://sci.esa.int/web/mars-express)). It studies the planet's atmosphere, surface and interior, and the moon Phobos.
 
 ## Now
 Operating. According to ESA, operations are funded until the end of 2026 and an extension to the end of 2029 has been requested ([EPSC 2026, C. Wilson](https://meetingorganizer.copernicus.org/EPSC2026/EPSC2026-270.html)). The sources differ here: in 2023 ESA's Science Programme Committee extended the mission to the end of 2026 and gave an indicative extension to 31 December 2028, to be reviewed in 2025–2026 ([ESA, 7 March 2023](https://sci.esa.int/web/director-desk/-/extended-life-for-esa-s-science-missions)). No decision on 2027–2029 appears in the sources found.
@@ -31,4 +32,4 @@ The spacecraft itself could last much longer: there is fuel until at least 2033,
 - 2025-05-19 — Software update extends the spacecraft's life, possibly to 2034 — [heise](https://heise.de/-10388281)
 
 ## Links
-- [ESA — Mars Express](https://www.esa.int/Science_Exploration/Space_Science/Mars_Express)
+- [ESA — Mars Express](https://sci.esa.int/web/mars-express)

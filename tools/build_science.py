@@ -464,7 +464,8 @@ class Item:
 
     @property
     def official(self) -> str:
-        return self.src.get("official", "")
+        # The English front matter may override a source link that has gone dead.
+        return self.meta.get("official") or self.src.get("official", "")
 
 
 class Site:

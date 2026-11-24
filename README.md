@@ -50,7 +50,7 @@ python3 tools/check_site.py --dist     # строгая проверка и сб
 
 | Путь | Что |
 |---|---|
-| `content/missions/<id>.md`, `content/facilities/<id>.md` | Перевод карточки: Summary, Now, Key dates, Results, Timeline, Links; во фронтматтере `tagline` и `next_event` |
+| `content/missions/<id>.md`, `content/facilities/<id>.md` | Перевод карточки: Summary, Now, Key dates, Results, Timeline, Links; во фронтматтере `tagline`, `next_event` и при необходимости `official` (заменяет мёртвую официальную ссылку из источника) |
 | `content/results.md`, `content/launches.md` | Результаты и запуски |
 | `content/method.md` | Как сделан раздел (страница Method) |
 | `data/calendar.json` | Переводы строк календаря, исключения, ссылки на конференции |
