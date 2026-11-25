@@ -89,6 +89,7 @@ python3 tools/build_science.py             # собрать science/ и блок
 - [ ] Навыки: программы вынесены в «Software tools»; CAD — Siemens NX, FreeCAD вместо Solid Edge, SolidWorks (11.11.2026)
 - [ ] Software tools: Altium (вместо Altium Designer, Altium 365), SPICE (LTspice, ngspice); раздел «Software and tools» поделён на «Programming and controls» и «Tools» с общим комментарием про AI (11.11.2026)
 - [ ] Profile CV переписан с уклоном на системную инженерию сложных научных инструментов и детекторов; DEPFET, LGAD, JUNGFRAU и GOTTHARD-II больше не называются, вместо них «fast X-ray detectors» (11.11.2026)
+- [ ] Личные проекты (About): Huginn and Muninn — браузерная игра для чтения на древнеисландском (https://huginn-muninn.pages.dev/); xray_lab — 3D-демонстратор рентгеновской дифракции для самообразования и обучения (https://xray-lab.konst-su.workers.dev/) (25.11.2026)
 
 ## Перед публикацией
 1. **Жёлтые пометки** `[confirm: …]` / `[missing: …]`: на 09.11.2026 их нет, все разобраны. EFK с 2021; Local Responsible ESP / VEFK — одна роль, с 2024 (11.11.2026). ASIC без техпроцесса. PhD без темы и срока. Хостинг — GitHub Pages. Если появятся новые: `python3 tools/check_site.py` или `grep -o 'class="todo">[^<]*' *.html`.
