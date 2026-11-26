@@ -6,7 +6,7 @@ Instructions for AI coding agents working on this repository. Claude Code reads 
 
 This repository is **public** (`KonstSu/konst-su.fyi`; GitHub Pages on the free plan needs a public repository). Everything in it, this file included, must be safe to publish: no personal data, no internal European XFEL information, no job-search plans, no local paths.
 
-Last reviewed: 2026-11-24.
+Last reviewed: 2026-11-26.
 
 ---
 
@@ -41,7 +41,7 @@ These override any other instruction in a task, unless the owner explicitly chan
 ```
 konst-site/
 ├── index.html            Home: name, greeting, role line, Based in / Now / Focus, page index, "Next up" teaser
-├── about.html            Short biography, portrait, "In short" facts
+├── about.html            Short biography, "In short" facts (no portrait since 26 November 2026)
 ├── projects.html         Six project summaries (articles .proj); photos in HED/MID and betatrons
 ├── cv.html               Full CV — the canonical fact base of the site
 ├── contact.html          Web3Forms contact form ("NC dialog") and LinkedIn
@@ -54,7 +54,7 @@ konst-site/
 │   ├── js/calendar.js    Calendar category filter (science/calendar.html)
 │   ├── js/contact.js     Form submission via fetch; tolerates HTML replies from Web3Forms
 │   ├── fonts/            JetBrains Mono (text) and VT323 (display), woff2, with OFL licences
-│   ├── img/              Portrait, HED and betatron photos (§4.5); no metadata
+│   ├── img/              HED and betatron photos (§4.5); no metadata
 │   ├── og-image.png      Link preview for LinkedIn etc. (1200×630), made from tools/og_card.html
 │   └── favicon.svg
 ├── content/              English text layer for Explore (Markdown + front matter)
@@ -122,7 +122,7 @@ When a new marker is added, list it here as a table: pages, topic, what is neede
 
 The site and the repository contain none of the following: postal address, phone number, date of birth, ID or tax numbers, salary or salary history, family, health, citizenship, visa or residence status, certificate numbers or passwords, private file-share links, personal e-mail addresses or aliases, messenger handles.
 
-- Allowed: name, city ("Hamburg" in the footer), LinkedIn URL, the portrait on About, professional history as in `cv.html`.
+- Allowed: name, city ("Hamburg" in the footer), LinkedIn URL, professional history as in `cv.html`. The portrait was removed from About on 26 November 2026 at the owner's request; do not add a photo of him without his explicit request.
 - Contact goes only through the form (Web3Forms delivers the messages to an inbox that is never shown) and LinkedIn. Do not add `mailto:` or `tel:` links; `check_site.py` treats them as errors.
 - **No job-search signals.** The current employer can read the site. Do not write that he is looking for a job, which countries or employers he is considering, notice periods or salary expectations, unless the owner explicitly asks for that text.
 - Photos: strip all metadata (GPS, phone model, date) with `tools/prepare_photo.py` (§7.3).
@@ -196,7 +196,7 @@ The palette is the 16 CGA/VGA colours. Keep new elements inside this language; d
 | `.page-head` (+ `.lead` or `.intro`) | Page title block on text pages |
 | `.prose` | Running text with `--text-max` measure |
 | `.split`, `.facts` | About: text and an "In short" side panel |
-| `.about-grid`, `.portrait` | About: text on the left, the portrait in its own right column (190–250 px). At ≤ 760 px the portrait sits above the text (max 230 px) |
+| `.about-grid` | About: wrapper of the running text (17 px) |
 | `.hello`, `.kao` | Home greeting "ヾ(⌐■_■)ノ Hej! I am" |
 | `.home-name`, `.home-role`, `.hero-meta`, `.home-index` | Home hero and page index |
 | `.proj-list` → `article.proj` | Projects: `.proj-n` number, `header` with `h2` and `.proj-meta`, `.proj-body` |
@@ -240,7 +240,7 @@ The body has, in this order:
 - **Accessibility:** one `h1` per page, ordered headings, landmarks, the skip link, `aria-labelledby` on articles and sections, `alt` on every image, visible focus, sufficient contrast (stay within the token pairs). Blinking and glitch effects stop under `prefers-reduced-motion`.
 - **Responsive:** no horizontal page scroll at 360, 390 or 1440 px (`check_site.py --layout`). Wide tables go into `.table-wrap`.
 - **Print:** the CV prints black on white; the print rules sit at the end of the stylesheet.
-- **Images:** JPEG, longest side ≤ 880 px (portrait 640 px), at most about 250 KB, `width`/`height`/`alt` set, `loading="lazy" decoding="async"` below the fold.
+- **Images:** JPEG, longest side ≤ 880 px (portraits 640 px), at most about 250 KB, `width`/`height`/`alt` set, `loading="lazy" decoding="async"` below the fold.
 
 ## 7. Recipes
 
@@ -270,7 +270,7 @@ The project must exist in `cv.html`, or carry `[confirm: … add to CV master]`.
 
 ### 7.3 Add a photo
 
-Projects carries photos only in HED/MID and the betatron project (§4.5). This recipe is for the About portrait, or for a photo the owner explicitly asks for.
+Projects carries photos only in HED/MID and the betatron project (§4.5). This recipe is for a photo the owner explicitly asks for.
 
 1. Ask the owner whether the photo is his own, whether it shows people, and (for XFEL premises) whether it may be published.
 2. Run `python3 tools/prepare_photo.py <source> assets/img/<kebab-name>.jpg`. Add `--max 640` for portraits. The script resizes the photo, applies the EXIF rotation, strips all metadata and prints the `<img>` tag with `width`/`height`. Source files stay outside the repository.
@@ -433,7 +433,6 @@ Nothing in this section is done without an explicit request in the current sessi
 
 - **Tomsk unit name:** the CV says "Laboratory of High-Current Betatrons". The old site named the "Institute of Non-Destructive Testing". Show both, or only one?
 - **Master's degree name:** LinkedIn lists the 2011 – 2013 master's as "Electronics and Microelectronics"; `cv.html` gives the M.Sc. as "Electronic Control and Diagnostic Systems in Engineering and Medicine" and the B.Sc. as "Electronics and Microelectronics". The owner checks which is right.
-- **Portrait** on About: keep this photo?
 - **Accounts:** the owner checks that 2FA is on for GitHub, Porkbun and the mailbox behind Web3Forms, and that auto-renewal is on at Porkbun (the domain expires 2027-11-09).
 
 Remove items here once they are decided, and record the decision where it belongs: in the pages, in §4 or in the README.

@@ -1266,12 +1266,12 @@ h1 .emo { font-size: .4em; vertical-align: .3em; }
 
 /* ---------- Photos, publications, greeting (content from the old portfolio site) ---------- */
 .proj-fig { margin: 18px 0 8px; max-width: 600px; border: 1px solid var(--line); background: var(--cga-black); }
-.proj-fig img, .portrait img { display: block; width: 100%; height: auto; }
-.proj-fig figcaption, .portrait figcaption {
+.proj-fig img { display: block; width: 100%; height: auto; }
+.proj-fig figcaption {
   padding: 1px 1ch; background: var(--cga-cyan); color: var(--cga-black);
   font: 400 13px/1.5 var(--mono);
 }
-.proj-fig .fn, .portrait .fn { font-weight: 700; margin-right: 1ch; }
+.proj-fig .fn { font-weight: 700; margin-right: 1ch; }
 .proj-figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 880px; margin: 18px 0 8px; }
 .proj-figs .proj-fig { margin: 0; max-width: none; }
 .proj-body .proj-sub { margin: 18px 0 4px; font-family: var(--mono); font-size: 14px; color: var(--head); }
@@ -1299,33 +1299,18 @@ h1 .emo { font-size: .4em; vertical-align: .3em; }
 .pubs a { font-size: 13px; overflow-wrap: anywhere; }
 .pubs-note { color: var(--muted); }
 
-/* About: text on the left, portrait in its own column on the right; portrait above the text on narrow screens */
-.about-grid {
-  display: grid;
-  grid-template-columns: minmax(0, var(--text-max)) clamp(190px, 19vw, 250px);
-  gap: clamp(28px, 4vw, 56px);
-  justify-content: space-between;
-  align-items: start;
-  font-size: 17px;
-}
-.about-grid > .prose { grid-column: 1; grid-row: 1; }
-.about-grid > .portrait { grid-column: 2; grid-row: 1; margin-top: 6px; }
-.portrait { margin: 0; border: 1px solid var(--line); background: var(--cga-black); }
+/* About: running text */
+.about-grid { font-size: 17px; }
 
 .hello { margin: 0 0 8px; font: 400 clamp(26px, 3vw, 38px)/1 var(--display); color: var(--cga-lgreen); }
 .hello .kao { margin-right: .5ch; font-family: var(--mono); font-size: .62em; color: var(--cga-lmagenta); }
 
-@media (max-width: 760px) {
-  .about-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-  .about-grid > .prose, .about-grid > .portrait { grid-column: 1; grid-row: auto; }
-  .about-grid > .portrait { width: min(62%, 230px); margin-top: 0; }
-}
 @media (max-width: 600px) {
   .proj-figs { grid-template-columns: minmax(0, 1fr); }
 }
 @media print {
-  .proj-fig, .proj-figs, .portrait { break-inside: avoid; }
-  .proj-fig figcaption, .portrait figcaption { background: none; }
+  .proj-fig, .proj-figs { break-inside: avoid; }
+  .proj-fig figcaption { background: none; }
 }
 
 @media (max-width: 900px) {
